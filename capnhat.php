@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,8 @@
             background-color:pink;
             padding: 10px;
             margin: 0;
+            overflow: auto;
+            border-radius: 10px;
         }
         table{
             width: 100%;
@@ -68,37 +71,34 @@
         }
     </style>
 </head>
+
 <body>
+    </form>
     <div class="section">
-    <?php session_start();
-        if (isset($_SESSION['message'])){
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-        }
-    ?>
-    <form action="" name="formHeader">
-    <?php
-    $link = mysqli_connect("localhost", "root", "") or die ("Can not connect to database");
-    mysqli_select_db($link, "dulieu");
-    $query = "select * from phongban";
-    $result = mysqli_query($link, $query );
-    echo "<table border = '2px' width = '100%'>";
-    echo "<caption>Các phòng ban trong công ty</caption>";
-    echo "<tr>
+        <form action="" name="formHeader">
+            <?php
+            $link = mysqli_connect("localhost", "root", "") or die("Can not connect to database");
+            mysqli_select_db($link, "dulieu");
+            $query = "select * from phongban";
+            $result = mysqli_query($link, $query);
+            echo "<table border = '2px' width = '100%'>";
+            echo "<caption>Các phòng ban trong công ty</caption>";
+            echo "<tr>
             <th>Mã phòng ban</th>
             <th>Tên phòng</th>
             <th>Mô tả</th>
             <th>Thao tác</th>
         </tr>";
-        while ($row = mysqli_fetch_array($result)){
-            $IDPB = $row["IDPB"];
-            echo "<tr><th>".$row["IDPB"]."</th><td>"
-            .$row["tenpb"]."</td><td>"
-            .$row["Mota"]."</td><th>"."<a href = 'xemthongtinNVPB.php?IDPB=$row[IDPB]'>Xem nhân viên</a>"." "." "."<a href = 'form-capnhat.php?IDPB=$row[IDPB]'>Cập nhật</a>"."</th></tr>";
-        }
-    echo "</table>"; 
-?>
+            while ($row = mysqli_fetch_array($result)) {
+                $IDPB = $row["IDPB"];
+                echo "<tr><th>" . $row["IDPB"] . "</th><td>"
+                    . $row["tenpb"] . "</td><td>"
+                    . $row["Mota"] . "</td><th>" . "<a href = 'xemthongtinNVPB.php?IDPB=$row[IDPB]'>Xem nhân viên</a>" . " " . " " . "<a href = 'form-capnhat.php?IDPB=$row[IDPB]'>Cập nhật</a>" . "</th></tr>";
+            }
+            echo "</table>";
+            ?>
     </div>
     </form>
 </body>
+
 </html>
