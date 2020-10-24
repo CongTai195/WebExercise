@@ -11,5 +11,3 @@
     else
         header("Location: http://localhost/CNWeb18N13/capnhat.php");
 ?>
-
-ádhasoudhasubduasbduasbduoasb
