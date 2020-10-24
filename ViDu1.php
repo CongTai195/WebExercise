@@ -9,4 +9,7 @@ function max1 ($a, $b, $c){
     $b = 3;
     $c = 6;
     max1($a, $b, $c);
+    if ($a == 1) {
+        echo "Today i'm good and you";
+    }
 ?>
