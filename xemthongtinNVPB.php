@@ -57,7 +57,7 @@
     $link = mysqli_connect("localhost", "root", "") or die ("Can not connect to database");
     mysqli_select_db($link, "dulieu");
     $idpb = $_GET["IDPB"];
-    $query = "select hoten, tenpb, diachi from nhanvien inner join phongban on nhanvien.IDPB = phongban.IDPB where nhanvien.IDPB = '$idpb'";
+    $query = "select IDNV,hoten, tenpb, diachi from nhanvien inner join phongban on nhanvien.IDPB = phongban.IDPB where nhanvien.IDPB = '$idpb'";
     $result = mysqli_query($link, $query);
     echo "<table border = '2px' width = '100%'>";
     // $r = $result->fetch_array();
@@ -65,12 +65,13 @@
     // $string = "Nhân viên của phòng ".$tenphong;
     //echo "<caption>$string</caption>";
     echo "<tr>
+            <th>IDNV</th>
             <th>Họ và tên</th>
             <th>Phòng ban làm việc</th>
             <th>Địa chỉ</th>
         </tr>";
         while ($row = mysqli_fetch_array($result)){
-            echo "<tr><td>".$row["hoten"]."</td><td>".$row["tenpb"]."</td><td>".$row["diachi"]."</td></tr>";
+            echo "<tr><th>".$row["IDNV"]."</th><td>".$row["hoten"]."</td><td>".$row["tenpb"]."</td><td>".$row["diachi"]."</td></tr>";
         }
     echo "</table>";
     ?>

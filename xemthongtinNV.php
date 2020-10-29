@@ -108,7 +108,9 @@
             <input class="submit" type="submit" value="Tìm kiếm" name="search">
             <input class="submit" type="submit" value="Thêm nhân viên" name="add">
         </form>
-        <?php
+    </div>
+    <div class="section">
+    <?php
             if (isset($_REQUEST["search"])) {
                 $search = $_GET["textsearch"];
                 $link = mysqli_connect("localhost", "root", "") or die("Can not connect to database");
@@ -135,7 +137,7 @@
                     echo "Không tìm thấy nhân viên nào !";
             }
             if (isset($_REQUEST["add"])){
-                header("location: themnhanvien.php");
+                header("location: form-them.php");
             }
             ?>
     </div>
