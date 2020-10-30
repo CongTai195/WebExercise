@@ -98,13 +98,17 @@
         .submit:hover {
             background-color: #43a09d;
         }
+        .input-text{
+            width: 300px;
+            font-size: 15px;
+        }
     </style>
 </head>
 
 <body>
     <div class="section">
         <form action="xemthongtinNV.php" method="get">
-            <input type="text" name="textsearch" id="textsearch">
+            <input class="input-text" type="text" placeholder="Search" name="textsearch" id="textsearch">
             <input class="submit" type="submit" value="Tìm kiếm" name="search">
             <input class="submit" type="submit" value="Thêm nhân viên" name="add">
         </form>

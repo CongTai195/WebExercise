@@ -37,6 +37,12 @@
         table{
             padding-bottom: 20px;
         }
+        select, option, input{
+            font-size: 15px;
+        }
+        th{
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -59,15 +65,15 @@
         <table>
             <tr>
                 <th>Mã phòng ban</th>
-                <td><input type="text" readonly name="IDPB" id="IDPB" value="<?php echo $IDPB ?>"></td>
+                <td><input type="text" readonly name="IDPB" id="IDPB" value="<?php echo $IDPB; ?>"></td>
             </tr>
             <tr>
                 <th>Tên phòng ban</th>
-                <td><input type="text" name="tenpb" id="tenpb" value="<?php echo $namepb ?>"></td>
+                <td><input type="text" name="tenpb" id="tenpb" value="<?php echo $namepb; ?>"></td>
             </tr>
             <tr>
                 <th>Mô tả</th>
-                <td><input type="text" name="motapb" id="motapb" value="<?php echo $description ?>"></td>
+                <td><input type="text" name="motapb" id="motapb" value="<?php echo $description; ?>"></td>
             </tr>
         </table>
         <input class="submit" type="submit" value="Update" name="update">

@@ -7,5 +7,5 @@
     mysqli_select_db($link, "dulieu");
     $query = "insert into nhanvien values ('$idnv', '$hoten', '$phongban', '$diachi')";
     mysqli_query($link, $query);
-    header("Location: xemthongtinNV.php");
+    header("Location: xemthongtinNV.php"); 
 ?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Fomr Thêm</title>
+    <title>Form Thêm</title>
     <style>
         body{
             margin: 0;
@@ -37,6 +37,12 @@
         table{
             padding-bottom: 20px;
         }
+        select, option, input{
+            font-size: 15px;
+        }
+        th{
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -53,10 +59,17 @@
             </tr>
             <tr>
                 <th>Phòng ban</th>
-                <td><select name="phongban" id="phongban">
-                    <option value="1">Kế hoạch - Tổng hợp</option>
-                    <option value="2">Tài chính - Kế Toán</option>
-                    <option value="3">Giám đốc</option>
+                <td>
+                    <select name="phongban" id="phongban">
+                    <?php
+                        $link = mysqli_connect("localhost", "root", "") or die ("Can not connect to database");
+                        mysqli_select_db($link, "dulieu");
+                        $query = "select * from phongban";
+                        $result = mysqli_query($link, $query);
+                        while ($row = mysqli_fetch_assoc($result)):
+                    ?>
+                    <option value="<?php echo $row["IDPB"]; ?>"><?php echo $row["tenpb"]; ?></option>
+                    <?php endwhile; ?>
                     </select>
                 </td>
             </tr>
