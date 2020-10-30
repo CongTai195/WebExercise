@@ -129,7 +129,7 @@
                             <th>Thao tác</th>
                         </tr>";
                     while ($row = mysqli_fetch_array($result)) {
-                        echo "<tr><th>" . $row["IDNV"] . "</th><td>" . $row["hoten"] . "</td><td>" . $row["tenpb"] . "</td><td>" . $row["diachi"] . "</td><th>" . "<a href = #>Cập nhật</a>" . "</th></tr>";
+                        echo "<tr><th>" . $row["IDNV"] . "</th><td>" . $row["hoten"] . "</td><td>" . $row["tenpb"] . "</td><td>" . $row["diachi"] . "</td><th>" . "<a href = 'form-capnhatNV.php?IDNV=$row[IDNV]'>Cập nhật</a>" ."<a href = 'xoaNV.php?IDNV=$row[IDNV]'>Xóa</a>" . "</th></tr>";
                     }
                     echo "</table>";
                 }
