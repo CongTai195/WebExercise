@@ -45,7 +45,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="SetCBB()">
     <form id="form" action="http://localhost/CNWeb18N13/xulycapnhatNV.php" method="POST" name="FormUpdate" class="FormUpdate">
         <?php
             $link = mysqli_connect("localhost", "root", "");
@@ -76,7 +76,7 @@
             </tr>
             <tr>
                 <th>Tên phòng ban</th>
-                <td><select name="phongban" id="phongban" >
+                <td><select name="phongban" id="phongban">
                     <?php
                         $link = mysqli_connect("localhost", "root", "") or die ("Can not connect to database");
                         mysqli_select_db($link, "dulieu");
@@ -99,6 +99,9 @@
     <script>
         function Cancel(){
             window.history.back();
+        }
+        function SetCBB(){
+            document.FormUpdate.phongban.value = <?php echo $IDPB ?>
         }
     </script>
 </body>
