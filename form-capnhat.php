@@ -56,7 +56,7 @@
             $query = "select * from phongban where IDPB = '$IDPB'";
             $result = mysqli_query($link, $query);
             if (mysqli_num_rows($result) == 1) {
-                $row = $result->fetch_array();
+                $row = mysqli_fetch_array($result);
                 $namepb = $row["tenpb"];
                 $description = $row["Mota"];
             }
@@ -69,11 +69,11 @@
             </tr>
             <tr>
                 <th>Tên phòng ban</th>
-                <td><input type="text" name="tenpb" id="tenpb" value="<?php echo $namepb; ?>"></td>
+                <td><input type="text" required name="tenpb" id="tenpb" value="<?php echo $namepb; ?>"></td>
             </tr>
             <tr>
                 <th>Mô tả</th>
-                <td><input type="text" name="motapb" id="motapb" value="<?php echo $description; ?>"></td>
+                <td><input type="text"  name="motapb" id="motapb" value="<?php echo $description; ?>"></td>
             </tr>
         </table>
         <input class="submit" type="submit" value="Update" name="update">

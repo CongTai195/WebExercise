@@ -7,6 +7,5 @@
     mysqli_select_db($link, "dulieu");
     $query = "update nhanvien set hoten = '$hoten', diachi = '$diachi', IDPB = '$phongban'  where IDNV = '$IDNV'";
     $result = mysqli_query($link, $query);
-    $_SESSION['message'] = "Cập nhật thành công !";
     header("location: xemthongtinNV.php");
 ?>

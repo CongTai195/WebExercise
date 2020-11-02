@@ -8,6 +8,8 @@
     if (mysqli_num_rows($result)==0) {
         header("Location: login.php");
     }
-    else
-        header("Location: capnhat.php");
+    else{
+        sleep(3);
+        header("Location: index_login.php");
+    }
 ?>

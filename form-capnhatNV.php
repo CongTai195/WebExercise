@@ -72,7 +72,7 @@
             </tr>
             <tr>
                 <th>Tên nhân viên</th>
-                <td><input type="text" name="hoten" id="hoten" value="<?php echo $hoten ?>"></td>
+                <td><input type="text" required name="hoten" id="hoten" value="<?php echo $hoten ?>"></td>
             </tr>
             <tr>
                 <th>Tên phòng ban</th>
@@ -90,7 +90,7 @@
             </tr>
             <tr>
                 <th>Địa chỉ</th>
-                <td><input type="text" name="diachi" id="diachi" value="<?php echo $diachi ?>"></td>
+                <td><input type="text" required name="diachi" id="diachi" value="<?php echo $diachi ?>"></td>
             </tr>
         </table>
         <input class="submit" type="submit" value="Update" name="update">

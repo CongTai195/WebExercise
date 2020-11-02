@@ -122,14 +122,23 @@
 
 <body>
     <div class="section">
+        <form action="xemthongtinNV.php" method="get">
+            <input class="input-text" type="text" placeholder="Search" name="textsearch" id="textsearch">
+            <input class="submit" type="submit" value="Tìm kiếm" name="search">
+            <input class="submit" type="submit" value="Thêm nhân viên" name="add">
+        </form>
+    </div>
+    <div class="section">
     <form action="xemthongtinNV.php" method="$_GET">
     <?php
-            {
+            if (isset($_REQUEST["search"])) {
+                $search = $_GET["textsearch"];
                 $link = mysqli_connect("localhost", "root", "") or die("Can not connect to database");
                 mysqli_select_db($link, "dulieu");
-                $query = "select IDNV, hoten, tenpb, diachi from nhanvien inner join phongban on nhanvien.IDPB = phongban.IDPB";
+                $query = "select IDNV, hoten, tenpb, diachi from nhanvien inner join phongban on nhanvien.IDPB = phongban.IDPB where hoten like '%$search%'";
                 $result = mysqli_query($link, $query);
                 if (mysqli_num_rows($result) > 0) {
+                    echo "Có ".mysqli_num_rows($result)." nhân viên có tên ".$search." được tìm thấy";
                     ?>
                     <table>
                     <caption>Nhân viên của công ty</caption>

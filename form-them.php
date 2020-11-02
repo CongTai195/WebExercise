@@ -66,10 +66,10 @@
                         mysqli_select_db($link, "dulieu");
                         $query = "select * from phongban";
                         $result = mysqli_query($link, $query);
-                        while ($row = mysqli_fetch_assoc($result)):
+                        while ($row = mysqli_fetch_assoc($result)){
                     ?>
                     <option value="<?php echo $row["IDPB"]; ?>"><?php echo $row["tenpb"]; ?></option>
-                    <?php endwhile; ?>
+                        <?php } ?>
                     </select>
                 </td>
             </tr>

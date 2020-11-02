@@ -96,7 +96,7 @@
                 <th>Mã phòng ban</th>
                 <th>Tên phòng</th>
                 <th>Mô tả</th>
-                <th>Thao tác</th>
+                <th>Xem nhân viên</th>
             </tr>
             <?php 
             while ($row = mysqli_fetch_array($result)) {
@@ -106,8 +106,7 @@
                 <th><?php echo $row["IDPB"]; ?></th>
                 <td><?php echo $row["tenpb"]; ?></td>
                 <td><?php echo $row["Mota"]; ?></td>
-                <th><a href = "xemthongtinNVPB.php?IDPB= <?php echo $IDPB ?>">Xem nhân viên</a>
-                <a href = 'form-capnhat.php?IDPB= <?php echo $IDPB?>'>Cập nhật</a></th>
+                <th><a href = "xemthongtinNVPB_GUEST.php?IDPB= <?php echo $IDPB ?>">Xem</a>
             </tr>
             <?php }?>
             </table>

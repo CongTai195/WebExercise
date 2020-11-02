@@ -95,21 +95,6 @@
             font-weight: bold;
         }
 
-        .del-btn:hover {
-            background-color: #974e44;
-        }
-        .del-btn {
-            background-color: red;
-            padding: 5px 45px;
-            border-radius: 5px;
-            cursor: pointer;
-            color: #ffffff;
-            border: none;
-            outline: none;
-            margin: 0;
-            font-weight: bold;
-        }
-
         .submit:hover {
             background-color: #43a09d;
         }
@@ -122,14 +107,23 @@
 
 <body>
     <div class="section">
-    <form action="xemthongtinNV.php" method="$_GET">
+        <form action="multidel.php" method="get">
+            <input class="input-text" type="text" placeholder="Search" name="textsearch" id="textsearch">
+            <input class="submit" type="submit" value="Tìm kiếm" name="search">
+            <input class="submit" type="submit" value="Thêm nhân viên" name="add">
+        </form>
+    </div>
+    <div class="section">
+    <form action="multidel.php" method="$_GET">
     <?php
-            {
+            if (isset($_REQUEST["search"])) {
+                $search = $_GET["textsearch"];
                 $link = mysqli_connect("localhost", "root", "") or die("Can not connect to database");
                 mysqli_select_db($link, "dulieu");
-                $query = "select IDNV, hoten, tenpb, diachi from nhanvien inner join phongban on nhanvien.IDPB = phongban.IDPB";
+                $query = "select IDNV, hoten, tenpb, diachi from nhanvien inner join phongban on nhanvien.IDPB = phongban.IDPB where hoten like '%$search%'";
                 $result = mysqli_query($link, $query);
                 if (mysqli_num_rows($result) > 0) {
+                    echo "Có ".mysqli_num_rows($result)." nhân viên có tên ".$search." được tìm thấy";
                     ?>
                     <table>
                     <caption>Nhân viên của công ty</caption>
@@ -139,7 +133,7 @@
                         <th>Phòng ban làm việc</th>
                         <th>Địa chỉ</th>
                         <th>Cập nhật</th>
-                        <th><input type='submit' value='Xóa' class='del-btn' name='multidel'></th>
+                        <th><input type='submit' value='Xóa' class='submit' name='multidel'></th>
                     </tr>
                     <?php
                     while ($row = mysqli_fetch_array($result)) { ?>
