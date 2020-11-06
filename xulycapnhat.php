@@ -7,7 +7,7 @@
     $description = $_REQUEST["motapb"];
     $link = mysqli_connect("localhost", "root", "");
     mysqli_select_db($link, "dulieu");
-    if (empty($namepb) || empty($description)){
+    if (empty($namepb)){
         header("location: form-capnhat.php?IDPB=$IDPB");
     }
     else {

@@ -78,10 +78,34 @@
             margin-bottom: 10px;
             border-radius: 10px;
         }
+        .submit {
+            background-color: #3fb6b2;
+            padding: 5px 45px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff;
+            border: none;
+            outline: none;
+            margin: 0;
+            font-weight: bold;
+        }
+        .submit:hover {
+            background-color: #43a09d;
+        }
     </style>
 </head>
 
 <body>
+    <div class="section">
+        <form action="xemthongtinpb.php" method="get">
+            <input class="submit" type="submit" value="+ Thêm phòng ban" name="add">
+            <?php
+            if (isset($_REQUEST["add"])) {
+                header("location: form-themphongban.php");
+            }
+            ?>
+        </form>
+    </div>
     <form action="" name="formHeader">
         <div class="section">
             <?php
@@ -91,25 +115,25 @@
             $result = mysqli_query($link, $query);
             ?>
             <table>
-            <caption>Các phòng ban trong công ty</caption>
-            <tr>
-                <th>Mã phòng ban</th>
-                <th>Tên phòng</th>
-                <th>Mô tả</th>
-                <th>Thao tác</th>
-            </tr>
-            <?php 
-            while ($row = mysqli_fetch_array($result)) {
-                $IDPB = $row["IDPB"];
+                <caption>Các phòng ban trong công ty</caption>
+                <tr>
+                    <th>Mã phòng ban</th>
+                    <th>Tên phòng</th>
+                    <th>Mô tả</th>
+                    <th>Thao tác</th>
+                </tr>
+                <?php
+                while ($row = mysqli_fetch_array($result)) {
+                    $IDPB = $row["IDPB"];
                 ?>
-            <tr>
-                <th><?php echo $row["IDPB"]; ?></th>
-                <td><?php echo $row["tenpb"]; ?></td>
-                <td><?php echo $row["Mota"]; ?></td>
-                <th><a href = "xemthongtinNVPB.php?IDPB= <?php echo $IDPB ?>">Xem nhân viên</a>
-                <a href = 'form-capnhat.php?IDPB= <?php echo $IDPB?>'>Cập nhật</a></th>
-            </tr>
-            <?php }?>
+                    <tr>
+                        <th><?php echo $row["IDPB"]; ?></th>
+                        <td><?php echo $row["tenpb"]; ?></td>
+                        <td><?php echo $row["Mota"]; ?></td>
+                        <th><a href="xemthongtinNVPB.php?IDPB= <?php echo $IDPB ?>">Xem nhân viên</a>
+                            <a href='form-capnhat.php?IDPB= <?php echo $IDPB ?>'>Cập nhật</a></th>
+                    </tr>
+                <?php } ?>
             </table>
         </div>
     </form>

@@ -57,7 +57,7 @@
             color: black;
             text-align: center;
             font-weight: lighter;
-            font-size: 20px;
+            font-size: 15px;
             padding: 0 0px;
         }
 
@@ -98,6 +98,7 @@
         .del-btn:hover {
             background-color: #974e44;
         }
+
         .del-btn {
             background-color: red;
             padding: 5px 45px;
@@ -113,7 +114,8 @@
         .submit:hover {
             background-color: #43a09d;
         }
-        .input-text{
+
+        .input-text {
             width: 300px;
             font-size: 15px;
         }
@@ -122,60 +124,79 @@
 
 <body>
     <div class="section">
-    <form action="xemthongtinNV.php" method="$_GET">
-    <?php
+        <form action="xemthongtinNV.php" method="get">
+            <input class="submit" type="submit" value="+ Thêm nhân viên" name="add">
+            <?php 
+                if (isset($_REQUEST["add"])) {
+                    header("location: form-them.php");
+                }
+            ?>
+        </form>
+    </div>
+    <div class="section">
+        <form action="xemthongtinNV.php" method="$_GET">
+            <?php 
+            ob_start();
             {
                 $link = mysqli_connect("localhost", "root", "") or die("Can not connect to database");
                 mysqli_select_db($link, "dulieu");
                 $query = "select IDNV, hoten, tenpb, diachi from nhanvien inner join phongban on nhanvien.IDPB = phongban.IDPB";
                 $result = mysqli_query($link, $query);
                 if (mysqli_num_rows($result) > 0) {
-                    ?>
+            ?>
                     <table>
-                    <caption>Nhân viên của công ty</caption>
-                    <tr>
-                        <th>Mã nhân viên</th>
-                        <th>Họ và tên</th>
-                        <th>Phòng ban làm việc</th>
-                        <th>Địa chỉ</th>
-                        <th>Cập nhật</th>
-                        <th><input type='submit' value='Xóa' class='del-btn' name='multidel'></th>
-                    </tr>
-                    <?php
-                    while ($row = mysqli_fetch_array($result)) { ?>
-                    <tr>
-                        <th><?php echo $row["IDNV"] ?> </th>
-                        <td><?php echo $row["hoten"] ?></td>
-                        <td><?php echo $row["tenpb"] ?></td>
-                        <td><?php echo $row["diachi"] ?></td>
-                        <th><a href = "form-capnhatNV.php?IDNV=<?php echo $row["IDNV"]?>">Cập nhật</a></th>    
-                        <th><input type='checkbox' name='multidelete[]' value="<?php echo $row["IDNV"] ?>"></th>
-                    </tr>
-                <?php 
-                }
-                ?>
-                </table>
-                <?php
-            }
-                else
-                    echo "Không tìm thấy nhân viên nào !";
-                }
-                    if (isset($_REQUEST["add"])){
-                        header("location: form-them.php");
-                    }
-                    if (isset($_REQUEST["multidel"])){
-                        $count = count($_REQUEST['multidelete']);
-                        $i = 0;
-                        while ($i < $count) {
-                            $del = $_REQUEST['multidelete'][$i];
-                            $link = mysqli_connect("localhost", "root", "") or die("Can not connect to database");
-                            mysqli_select_db($link, "dulieu");
-                            mysqli_query($link, "delete from nhanvien where IDNV = '$del'");
-                            $i++;
+                        <caption>Nhân viên của công ty</caption>
+                        <tr>
+                            <th>Mã nhân viên</th>
+                            <th>Họ và tên</th>
+                            <th>Phòng ban làm việc</th>
+                            <th>Địa chỉ</th>
+                            <th>Cập nhật</th>
+                            <th><input type='submit' value='Xóa' class='del-btn' name='multidel'></th>
+                        </tr>
+                        <?php
+                        while ($row = mysqli_fetch_array($result)) { ?>
+                            <tr>
+                                <th><?php echo $row["IDNV"] ?> </th>
+                                <td><?php echo $row["hoten"] ?></td>
+                                <td><?php echo $row["tenpb"] ?></td>
+                                <td><?php echo $row["diachi"] ?></td>
+                                <th><a href="form-capnhatNV.php?IDNV=<?php echo $row["IDNV"] ?>">Cập nhật</a></th>
+                                <th><input type='checkbox' name='multidelete[]' value="<?php echo $row["IDNV"] ?>"></th>
+                            </tr>
+                        <?php
                         }
-                    }
+                        ?>
+                    </table>
+            <?php
+                } 
+            }
+            if (isset($_REQUEST["multidel"])) {
+                @$count = count($_REQUEST['multidelete']);
+                if ($count == 0){
                     ?>
-    </form>
+                    <script>
+                        alert("Bạn chưa chọn nhân viên nào để xóa  !");
+                    </script>
+                    <?php
+                    //echo "Bạn chưa chọn nhân viên nào để xóa  !";
+                }
+                else {
+                    $i = 0;
+                    while ($i < $count) {
+                        $del = $_REQUEST['multidelete'][$i];
+                        $link = mysqli_connect("localhost", "root", "") or die("Can not connect to database");
+                        mysqli_select_db($link, "dulieu");
+                        mysqli_query($link, "delete from nhanvien where IDNV = '$del'");
+                        $i++;
+                    }
+                    header("Location: xemthongtinnv.php");
+                }
+            }
+            ob_flush();
+            ?>
+        </form>
     </div>
 </body>
+
 </html>

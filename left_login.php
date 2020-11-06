@@ -43,9 +43,7 @@
         <a href="main.php" target="main"><h4>Trang chủ</h4></a>
         <a href="http://localhost/CNWeb18N13/xemthongtinNV.php" target="main"><h4>Nhân viên</h4></a>
         <a href="http://localhost/CNWeb18N13/xemthongtinPB.php#" target="main"><h4>Phòng ban</h4></a>
-        <a href="http://localhost/CNWeb18N13/login.php" target="main"><h4>Mục 3</h4></a>
-        <a href="http://localhost/CNWeb18N13/form-capnhat.php" target="main"><h4>Mục 4</h4></a>
-        <a href="form55.html" target="main"><h4>Mục 5</h4></a>
+        <a href="http://localhost/CNWeb18N13/search_nhanvien.php" target="main"><h4>Tìm kiếm</h4></a>
     </form>
 </body>
 </html>

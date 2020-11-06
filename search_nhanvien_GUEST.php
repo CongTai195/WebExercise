@@ -57,7 +57,7 @@
             color: black;
             text-align: center;
             font-weight: lighter;
-            font-size: 15px;
+            font-size: 20px;
             padding: 0 0px;
         }
 
@@ -124,13 +124,13 @@
 
 <body>
     <div class="section">
-        <form action="search_nhanvien.php" method="get">
+        <form action="search_nhanvien_GUEST.php" method="get">
             <input class="input-text" type="text" placeholder="Search" name="textsearch" id="textsearch">
             <input class="submit" type="submit" value="Tìm kiếm" name="search">
         </form>
     </div>
     <div class="section">
-        <form action="search_nhanvien.php" method="$_GET">
+        <form action="search_nhanvien_GUEST.php" method="$_GET">
             <?php
             if (isset($_REQUEST["search"])) {
                 $search = $_GET["textsearch"];
@@ -151,8 +151,6 @@
                                 <th>Họ và tên</th>
                                 <th>Phòng ban làm việc</th>
                                 <th>Địa chỉ</th>
-                                <th>Cập nhật</th>
-                                <th><input type='submit' value='Xóa' class='del-btn' name='multidel'></th>
                             </tr>
                             <?php
                             while ($row = mysqli_fetch_array($result)) { ?>
@@ -161,8 +159,6 @@
                                     <td><?php echo $row["hoten"] ?></td>
                                     <td><?php echo $row["tenpb"] ?></td>
                                     <td><?php echo $row["diachi"] ?></td>
-                                    <th><a href="form-capnhatNV.php?IDNV=<?php echo $row["IDNV"] ?>">Cập nhật</a></th>
-                                    <th><input type='checkbox' name='multidelete[]' value="<?php echo $row["IDNV"] ?>"></th>
                                 </tr>
                             <?php
                             }
